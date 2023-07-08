@@ -13,10 +13,10 @@ public class FindPathDFS{
         
     }
 
-    public void printPath(int source) {
+    public void printPath() {
         int temp = 0;
         for(int n=0; n<edges.size(); n++){
-            if (edges.get(n).source.getValue()==source){
+            if (edges.get(n).source.equals(source)){
                 temp = n;
             }
         }
@@ -58,7 +58,7 @@ public class FindPathDFS{
             
             if (v.getValue() == d.getValue())
             {
-                printPath(source.getValue());
+                printPath();
                 return true;
             }
         }

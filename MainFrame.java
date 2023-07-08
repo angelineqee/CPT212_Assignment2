@@ -1,3 +1,8 @@
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
+
 public class MainFrame extends javax.swing.JFrame {
 
     static Vertex source = null;
@@ -144,19 +149,34 @@ public class MainFrame extends javax.swing.JFrame {
         
     }                                           
 
-    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {     
-
-        for (int i=0; i<vertexNum; i++){
-            if (vertices[i].getName().equals(Origin.getSelectedItem().toString())){
-                source = vertices[i];
-            } 
-            if (vertices[i].getName().equals(Destination.getSelectedItem().toString()))
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {   
+        String start = Origin.getSelectedItem().toString();
+        String end = Destination.getSelectedItem().toString();
+        if (start.equals(end))
+        {
+            ImageIcon icon = new ImageIcon("uhoh.jpg");
+            Image image = icon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(300, 220,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            icon = new ImageIcon(newimg);  // transform it back
+            JOptionPane.showMessageDialog(null, "Origin and destination cannot be the same!", 
+            "Uh oh", JOptionPane.ERROR_MESSAGE, icon);
+        } 
+        else
+        {
+            for (int i=0; i<vertexNum; i++)
             {
-                destination = vertices[i];
-            }     
-        }                                        
-        obj.FindPath(source, destination);
-        Path.setText(obj.path);
+                if (vertices[i].getName().equals(Origin.getSelectedItem().toString())){
+                    source = vertices[i];
+                } 
+                if (vertices[i].getName().equals(Destination.getSelectedItem().toString()))
+                {
+                    destination = vertices[i];
+                }     
+            }                                        
+            obj.FindPath(source, destination);
+            Path.setText(obj.path);
+        }
+        
     }
 
     /**
