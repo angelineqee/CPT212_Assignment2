@@ -21,10 +21,20 @@ public class FindPathDFS{
             }
         }
 
-        for(int k=temp;k<edges.size(); k++){
-            path += edges.get(k).source.getName();
-            path += " ";
+        for(int k=temp;k<edges.size()-1; k++){
+            //if backtrack to the same location, ignore the reversed path
+            if (edges.get(k).source.getName().equals(edges.get(k+1).source.getName()))
+            {
+                continue;                                                                                                                                                           
+            }
+            else
+            {
+                path += edges.get(k).source.getName();
+                path += " -> ";
+            }       
         }
+        path += edges.get(edges.size()-1).source.getName();
+        path += " -> ";
         path += destination.getName();
     }
 
