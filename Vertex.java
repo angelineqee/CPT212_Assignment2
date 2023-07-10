@@ -2,9 +2,9 @@ import java.util.*;
 
 //Each vertex is a location on the map
 public class Vertex {
-    int value; //act as the key of each vertex/ location number
-    int visited; //a value to indicate whether the vertex is visited, 0 - not visited
-    String locName; //name of the vertex/ location
+    private int value; //act as the key of each vertex/ location number
+    private int visited; //a value to indicate whether the vertex is visited, 0 - not visited
+    private String locName; //name of the vertex/ location
     ArrayList<Vertex> neighbours; //Each vertex has its adjacency list to store its neighbours
 
     //Constructor to initialize the vertex
