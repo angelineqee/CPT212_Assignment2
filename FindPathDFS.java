@@ -55,7 +55,7 @@ public class FindPathDFS{
         for (int j=0; j<v.neighbours.size(); j++) //traverse the adjacency list of the vertex
         {
             Vertex neighbor = v.neighbours.get(j);
-            if(neighbor.getVisited()==0){
+            if(neighbor.getVisited()==0){ //Only go to the adjacent neighbour that is not visited to prevent cycle
                 System.out.println(v.getName() + " -> " + neighbor.getName() +", "); //print the traversal path in terminal
                 if(neighbor.getValue() == d.getValue()) //only store the direct path from start to end vertex
                 {
@@ -69,22 +69,6 @@ public class FindPathDFS{
                     return true;
                 }
             }
-
-            
-
-            // //Only go to the adjacent neighbour that is not visited to prevent cycle
-            
-            // if (neighbor.getVisited() == 0 && v.getValue() != d.getValue())
-            // {
-            //     DFS(neighbor, d);
-            // }    
-            
-            //If the end/destination vertex is reached, discontinues DFS
-            // if (v.getValue() == d.getValue())
-            // {
-                
-            //     return true;
-            // }
         }
         
         return false;
