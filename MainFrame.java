@@ -161,7 +161,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1.setText("Origin");
 
         Destination.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        Destination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masjid", "CS School", "Fajar", "Eureka", "DTSP", "Library", "Padang Kawad", "Sg. Dua Gate", "Subaidah", "Bukit Gambir Gate", "Swimming Pool", "RST", "Minden Gate" }));
+        Destination.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masjid", "CS School", "Fajar", "Eureka", "DTSP", 
+        "Library", "Padang Kawad", "Sg. Dua Gate", "Subaidah", "Bukit Gambir Gate", "Swimming Pool", "RST", "Minden Gate" }));
         Destination.setMaximumSize(new java.awt.Dimension(157, 25));
         Destination.setMinimumSize(new java.awt.Dimension(157, 25));
         Destination.setPreferredSize(new java.awt.Dimension(157, 25));
@@ -337,7 +338,8 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         //Initialize all vertices on the graph
-        String [] locations = {"Masjid", "CS School","Fajar","Eureka","DTSP","Library","Padang Kawad","Sg. Dua Gate","Subaidah","Bukit Gambir Gate","Swimming Pool","RST","Minden Gate"};
+        String [] locations = {"Masjid", "CS School","Fajar","Eureka","DTSP","Library","Padang Kawad","Sg. Dua Gate","Subaidah",
+        "Bukit Gambir Gate","Swimming Pool","RST","Minden Gate"};
         for (int i=0; i<vertexNum; i++)
         {
             vertices[i] = new Vertex(i,locations[i]);
