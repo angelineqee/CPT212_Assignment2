@@ -18,12 +18,32 @@ public class FindPathDFS{
     public void printPath() 
     {
         path = "";
+        String Source, Destination, nextSource; //variable declaration
 
-        for(int k=edges.size()-1;k>=0; k--){
-                path += edges.get(k).source.getName();
-                path += " -> ";
-                path += edges.get(k).destination.getName();
-                path += ", ";     
+        for(int k=edges.size()-1; k>=0; k--){
+            
+            Source = edges.get(k).source.getName();
+            Destination = edges.get(k).destination.getName();
+            
+            path += Source;
+            path += " -> ";
+            
+            if (k-1==-1) //end the loop when k-1 is under 0 as the k-1 would be the index for nextSource
+            {
+                path += Destination;
+                break;
+            }
+            
+            nextSource = edges.get(k-1).source.getName();
+
+            if (Destination.equals(nextSource)) //if the current destination is equal to next source, then it will only print once
+            {
+                path += " ";
+            }
+            else //if the current destination and the next source is not the same then print the current destination. 
+            {
+                path += Destination;
+            }
         }
     }
 

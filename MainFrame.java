@@ -2,7 +2,9 @@ import javax.swing.JOptionPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-
+import javax.swing.UIManager;
+import java.awt.Font;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -276,11 +278,16 @@ public class MainFrame extends javax.swing.JFrame {
         start = Origin.getSelectedItem().toString(); //get the start location selected by the user
         end = Destination.getSelectedItem().toString(); //get the end location selected by the user
         if (start.equals(end)) //if the start and end locations are the same, display an error message with a message dialog
-        {
-            ImageIcon icon = new ImageIcon("uhoh.jpg");
+        {   ImageIcon icon = new ImageIcon("C:/Users/Juyiillee/Downloads/CPT212_ass2/src/uhoh.jpg");
             Image image = icon.getImage(); // transform it 
             Image newimg = image.getScaledInstance(300, 220,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
             icon = new ImageIcon(newimg);  // transform it back
+            
+            Font newFont = new Font("Serif", Font.BOLD, 14); 
+            Color fontColour = Color.decode("#694740"); 
+            UIManager.put("OptionPane.messageFont", newFont);
+            UIManager.put("OptionPane.messageForeground", fontColour);            
+            
             JOptionPane.showMessageDialog(null, "Origin and destination cannot be the same!", 
             "Uh oh", JOptionPane.ERROR_MESSAGE, icon);
         } 
@@ -303,7 +310,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
-        ImageIcon icon = new ImageIcon("icon.png");
+        ImageIcon icon = new ImageIcon("C:/Users/Juyiillee/Downloads/CPT212_ass2/src/icon.png");
         setIconImage(icon.getImage());
     }      
 
