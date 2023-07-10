@@ -1,16 +1,23 @@
 import javax.swing.JOptionPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+
 import java.awt.Image;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 
 public class MainFrame extends javax.swing.JFrame {
 
-    static Vertex source = null;
-    static Vertex destination = null;
+    Vertex source = null;
+    Vertex destination = null;
     static final int vertexNum = 13;
     static Vertex [] vertices = new Vertex[vertexNum];
-    static FindPathDFS obj = new FindPathDFS();
+    FindPathDFS obj = new FindPathDFS();;
+
+    String start = " ";
+    String end = " ";
 
     /**
      * Creates new form MainFrame
@@ -142,6 +149,16 @@ public class MainFrame extends javax.swing.JFrame {
                 OriginActionPerformed(evt);
             }
         });
+        ItemListener itemListener = new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    Origin = (JComboBox) e.getSource();
+                    start = Origin.getSelectedItem().toString();
+                }
+            }
+        };
+        Origin.addItemListener(itemListener);
+
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(105, 71, 64));
@@ -158,6 +175,15 @@ public class MainFrame extends javax.swing.JFrame {
                 DestinationActionPerformed(evt);
             }
         });
+        ItemListener itemListener2 = new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    Destination = (JComboBox) e.getSource();
+                    end = Destination.getSelectedItem().toString();
+                }
+            }
+        };
+        Destination.addItemListener(itemListener2);
 
         jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(105, 71, 64));
@@ -243,15 +269,15 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void OriginActionPerformed(java.awt.event.ActionEvent evt) {                                       
         
-    }                                      
+    }          
 
     private void DestinationActionPerformed(java.awt.event.ActionEvent evt) {                                            
         
     }                                           
 
-    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {   
-        String start = Origin.getSelectedItem().toString();
-        String end = Destination.getSelectedItem().toString();
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        start = Origin.getSelectedItem().toString();
+        end = Destination.getSelectedItem().toString();
         if (start.equals(end))
         {
             ImageIcon icon = new ImageIcon("uhoh.jpg");
@@ -265,16 +291,18 @@ public class MainFrame extends javax.swing.JFrame {
         {
             for (int i=0; i<vertexNum; i++)
             {
-                if (vertices[i].getName().equals(Origin.getSelectedItem().toString())){
+                if (vertices[i].getName().equals(start)){
                     source = vertices[i];
                 } 
-                if (vertices[i].getName().equals(Destination.getSelectedItem().toString()))
+                else if (vertices[i].getName().equals(end))
                 {
                     destination = vertices[i];
                 }     
-            }                                        
-            obj.FindPath(source, destination);
-            Path.setText(obj.path);
+            }                          
+            System.out.println(source.getName() + " " +destination.getName());       
+            obj.FindPath(source, destination, vertices);
+            System.out.println(obj.getPath());
+            Path.setText(obj.getPath());
         }
         
     }
@@ -321,10 +349,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         vertices[0].addNeighbour(vertices[1]);
-        vertices[0].addNeighbour(vertices[2]);
+        vertices[0].addNeighbour(vertices[5]);
         vertices[0].addNeighbour(vertices[3]);
         vertices[0].addNeighbour(vertices[4]);
-        vertices[0].addNeighbour(vertices[5]);
+        vertices[0].addNeighbour(vertices[2]);
 
         vertices[1].addNeighbour(vertices[0]);
         vertices[1].addNeighbour(vertices[6]);
@@ -341,8 +369,8 @@ public class MainFrame extends javax.swing.JFrame {
         vertices[5].addNeighbour(vertices[0]);
 
         vertices[6].addNeighbour(vertices[1]);
-        vertices[6].addNeighbour(vertices[2]);
         vertices[6].addNeighbour(vertices[9]);
+        vertices[6].addNeighbour(vertices[2]);
 
         vertices[7].addNeighbour(vertices[3]);
 

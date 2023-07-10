@@ -38,8 +38,10 @@ public class Vertex {
     }
 
     //display neighbours
-    ArrayList<Vertex> displayNeighbours(){
-        return this.neighbours;
+    void displayNeighbours(){
+        for(int i=0; i<this.neighbours.size(); i++){
+            System.out.println(this.neighbours.get(i).getName());
+        }
     }
 
 
